@@ -2,6 +2,11 @@ Earth-Simulation, Ohad Eder Pressman, 2001
 
 Original blog post: https://www.ohadpr.com/page/16/
 
+![screenshot](https://github.com/ohadpr/opengl-earth-simulation-gis/blob/master/screenshots/earth_shot_1.jpg)
+![screenshot](https://github.com/ohadpr/opengl-earth-simulation-gis/blob/master/screenshots/earth_shot_2.jpg)
+![screenshot](https://github.com/ohadpr/opengl-earth-simulation-gis/blob/master/screenshots/earth_shot_3.jpg)
+![screenshot](https://github.com/ohadpr/opengl-earth-simulation-gis/blob/master/screenshots/earth_shot_4.jpg)
+
 After the WTC attacks, CNN started using their Weather-System Simulation Program (I think) to show Afghanistan and Tomahawk missiles flying :)
 This looked very nice and moved by the fact that I really didn't know too much geography and had a day or two free (Sukkot Holiday), I went on and wrote my own Earth Simulation program.
 The program is based on a large sphere, with a nice texture of the earth is mapped to. You can rotate the earth, zoom-in, etc, etc.

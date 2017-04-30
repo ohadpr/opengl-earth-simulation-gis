@@ -1,0 +1,278 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>texFont Library Release 4 Documentation</title>
+</head>
+
+<body bgcolor="#FFFFFF" link="#0000FF">
+
+<p align="center"><font size="3" face="Arial"><b>glTexFont
+Library Documentation</b></font></p>
+
+<p align="center"><font size="2" face="Arial">By Nate Miller </font></p>
+
+<p align="center"><a href="mailto:vandals1@home.com"><font
+size="2" face="Arial">vandals1@home.com</font></a></p>
+
+<p align="center"><font size="2" face="Arial">Release 6</font></p>
+
+<p align="center"><font size="2" face="Arial">June 26, 1999</font></p>
+
+<p><font size="3" face="Arial"><b><u>Inroduction</u></b></font></p>
+
+<p><font size="2" face="Arial">The glTexFont library is a set of
+functions that allow C/C++ programmers the ability to add text to
+their OpenGL applications. glTexFont is not meant to be a complex
+library, its main goal is simplicity. Keeping the library simpe
+gives the average user the chance to use it without a great
+amount of work. </font></p>
+
+<p><font size="3" face="Arial"><b><u>Installing</u></b></font></p>
+
+<p><font size="2" face="Arial">Installing glTexFont is pretty
+simple. First extract gltexfontlib.zip to a temporary directory.
+Once you have done this copy <i>glTexFont.h</i> to your compilers
+&quot;include&quot; diretory. Then copy <i>glTexFont.lib</i> into
+your compilers &quot;lib&quot;, or library directory. Once this
+is done you are ready to use glTexFont in your application. </font></p>
+
+<p><font size="3" face="Arial"><b><u>Usage</u></b></font></p>
+
+<p><font size="2" face="Arial">Once you have glTexFont installed
+you are ready to use it. To use glTexFont in your projects the
+first thing you must do is link to the glTexFont library, <i>glTexFont.lib</i>.
+Once you have done this make sure that you <i>#include
+&lt;glTexFont.h&gt;</i>. Now you are ready to load the font. The
+other libraries which you should link too if you are creating a
+simple GLUT application are msvcrt.lib opengl32.lib, glu32.lib
+and glTexFont.lib.</font></p>
+
+<p><font size="3" face="Arial"><b><u>Loading A Font</u></b></font></p>
+
+<p><font size="2" face="Arial">There are two different calls that
+load a font. The first call is <i>fontLoad</i>. The parameter to
+this function si the name of the font Targa file. After calling
+this function the font map that you specified will be loaded and
+you will be ready to draw text to the screen. If <em>fontLoad</em>
+is successfull it will return a value of 1, if not it will return
+one of the error codes listed below. </font></p>
+
+<p><font size="2" face="Arial">The second font loading call is <i>fontLoadEx</i>.
+This is an ADVANCED call and should not be used unless you have a
+good idea about what you are doing. This function takes the same
+parameters as <i>fontLoad </i>with the addition of a row and
+column parameter. The row parameter stands for the number of
+characters that will be in the image file per row and the col
+parameter stands for the number of characters that will be in the
+image file per column. If row and col were multiplied together
+they MUST equal 256 because the ASCII character set goes from 0
+to 255. </font></p>
+
+<p><font size="2" face="Arial">Make sure that you call <em>fontLoad</em>
+AFTER OpenGL has been initialized and setup. If you call it
+before you wont see the correct font and all that will be
+displayed will be colored boxes where the font should show up.
+This is because glTexFont uploads the font map to texture memory
+when you load it and it also uses OpenGL to manage the texture id
+creation. </font></p>
+
+<p><font size="3" face="Arial"><strong><u>Errors</u></strong></font></p>
+
+<p><font size="2" face="Arial">If there is an error when loading
+a font <em>fontLoad</em> and <em>fontLoadEx</em> will both return
+an error value which can be used to determine the souce of the
+problem. There are five different error codes that the font
+loading functions will return. Here are the error codes that are
+returned on failure:</font></p>
+
+<blockquote>
+    <p align="left"><font size="2" face="Arial"><em><strong>FONT_FILE_NOT_FOUND</strong></em>
+    -- Font image was not found.<br>
+    <em><strong>FONT_BAD_IMAGE_TYPE</strong></em> -- The font
+    image was a color mapped image or is compressed. Image must
+    be uncompressed and not have a colormap.<br>
+    <em><strong>FONT_BAD_DIMENSION</strong></em> -- Image
+    dimension was not a power of 2.<br>
+    <em><strong>FONT_BAD_BITS</strong></em> -- Image bit depth
+    was not 8, 24 or 32.<br>
+    <em><strong>FONT_BAD_DATA</strong></em> -- Image data could
+    not be loaded.</font></p>
+</blockquote>
+
+<p><font size="3" face="Arial"><strong><u>Drawing A Simple String</u></strong></font></p>
+
+<p><font size="2" face="Arial">glTexFont was designed to be as
+easy to use as <em>printf</em>, if you would like to output a
+float value its as easy as<em> fontDrawString (0,0,&quot;Some
+number %f&quot;, myNum);</em> If you know how to use <em>printf</em>
+you will be perfectly comfortable with glTexFont. When you call
+any string drawing functions with glTexFont the string will be
+drawn into the <em>current</em> viewport. Below are some examples
+of simple strings:</font></p>
+
+<p align="center"><font size="2" face="Arial"><em>fontDrawString
+(0, 0, &quot;This is line has a \ttab in it&quot;);<br>
+fontDrawString (0, 0, &quot;A line with a carrage return\nNew
+line!&quot;);<br>
+fontDrawString (0, 0, &quot;This is a float number: %f&quot;,
+myFloat);</em></font></p>
+
+<p><font size="3" face="Arial"><b><u>Setting The Font Size</u></b></font></p>
+
+<p><font size="2" face="Arial">To set the size of the font it
+takes one simple call to <i>fontSize (int size)</i> and the size
+of the text for the next font operation will be the number passed
+to <i>fontSize</i>. The default font size is 12. </font></p>
+
+<p><font size="3" face="Arial"><b><u>Drawing A Shadow</u></b></font></p>
+
+<p><font size="2" face="Arial">If you would like to draw shadowed
+text make a call to <i>fontShadow ()</i> before you draw your
+string and the next string that is drawn will be drawn with a
+shadow. Default font shadow is gray. </font></p>
+
+<p><font size="3" face="Arial"><strong><u>Font Gradient Coloring</u></strong></font></p>
+
+<p><font size="2" face="Arial">If you would like to have gradient
+text, text which is shaded from the top to the bottom make a call
+too <em>fontGradient</em>. This will enable the gradient
+coloring. A call to <em>fontGradientColor</em> will set the
+ending color for the gradient. The color of the text will be the
+color specified with <em>fontColor*</em> on the top and the color
+specified with <em>fontGradientColor*</em> on the bottom. </font></p>
+
+<p><font size="3" face="Arial"><b><u>Using Italics</u></b></font></p>
+
+<p><font size="2" face="Arial">Using italics is fairly simple. To
+start the italics you would use the \\i+ token, the i+ tells the
+library to start the italics. To stop italics the \\i- token
+would be used. As with the rest of the library the italics only
+last for one call to <em>fontDrawString</em>, after one call
+italics are turned off. Here are a few simple examples:</font></p>
+
+<p align="center"><font size="2" face="Arial"><em>fontDrawString
+(0, 0, &quot;\\i+All Italics!&quot;);<br>
+fontDrawString (0, 0, &quot;\\i+This is italic, \\i-this is not
+and \\i+this is italic&quot;);</em></font></p>
+
+<p><font size="3" face="Arial"><b><u>Using Bold</u></b></font></p>
+
+<p><font size="2" face="Arial">Using bold is fairly simple. To
+start the bold you would use the \\b+ token, thebi+ tells the
+library to start the bold. To stop bold the \\b- token would be
+used. As with the rest of the library the bold only lasts for one
+call to <em>fontDrawString</em>, after one call bold is turned
+off. Here are a few simple examples:</font></p>
+
+<p align="center"><font size="2" face="Arial"><em>fontDrawString
+(0, 0, &quot;\\b+All Bold!&quot;);<br>
+fontDrawString (0, 0, &quot;\\b+This is bold, \\b-this is not and
+\\b+this is bold&quot;);</em></font></p>
+
+<p><font size="3" face="Arial"><b><u>Coloring The Text</u></b></font></p>
+
+<p><font size="2" face="Arial">There are many different calls to
+set the current color of the font, the shadow or the gradient.
+Here they are listed in no particular order:</font></p>
+
+<p align="center"><font size="2" face="Arial"><i>void fontColor
+(float r, float g, float b);<br>
+void fontColorA (float r, float g, float b, float a);<br>
+void fontColorp (float *clr);<br>
+void fontColorAp (float *clr);<br>
+void fontShadowColor (float r, float g, float b);<br>
+void fontShadowColorA (float r, float g, float b, float a);<br>
+void fontShadowColorp (float *clr);<br>
+void fontShadowColorAp (float *clr);<br>
+void fontGradientColor (float r, float g, float b);<br>
+void fontGradientColorA (float r, float g, float b, float a);<br>
+void fontGradientColorp (float *clr);<br>
+void fontGradientColorAp (float *clr);</i></font></p>
+
+<p align="left"><font size="2" face="Arial"><strong>So what do
+all these functions do? </strong><br>
+<em>fontColor*</em> sets the color for the current string.<br>
+<em>fontShadowColor*</em> sets the color for the string shadow<br>
+<em>fontGradientColor*</em> sets the color for the gradient, this
+is the bottom color of the gradient, the top is the color
+specified with <em>fontColor*</em></font></p>
+
+<p><font size="2" face="Arial">A note on the naming convention
+for these calls. If a functions name contains an &#145;A&#146; at
+the end or near it that means that the call will set the color
+with an Alpha value. If there is no &#145;A&#146; the color is
+assumed to be a regular RGB. If there is a &#145;p&#146; at the
+end of the function name that means that the function expects an
+array of numbers to be passed to it rather than 3 or 4 numbers.
+All values that are passed to the functions are assumed to be
+float's in the range from 0.0 to 1.0.</font></p>
+
+<p><font size="3" face="Arial"><b><u>Color Tokens</u></b></font></p>
+
+<p><font size="2" face="Arial">Color tokens are useful for giving
+each character in your string an individual color. Color tokens
+are used in the call<em> fontDrawString</em> as part of the
+string that will be drawn. There are two color tokens supported:
+\\c and \\a. If a \\c is encountered this is the syntax that
+should follow: \\c(r g b). What this does is sets all characters
+that follow the token to the RGB color that is defined by r, g,
+and b. If a \\a is encountered this is the syntax that should
+follow: \\a(r g b a). What this does is sets all characters that
+follow the token to the RGBA color that is defined by r, g, b and
+a. Again all of these numbers are integers. The range of these
+integers is from 0 to 255. A color token will color all
+characters that follow it until it either encounters another
+color token or the end of the string. </font></p>
+
+<p><font size="3" face="Arial"><b><u>Font Regions</u></b></font></p>
+
+<p><font size="2" face="Arial">Font regions are useful when you
+would like to have a long string of text confined to a small
+area. To use a region you would call <i>fontRegion</i>. The first
+two parameters describe the upper left hand corner in window
+coordinates and the second two are the width and the height of
+the region. Here is some example code that would setup a text
+region:</font></p>
+
+<p align="center"><font size="2" face="Arial"><i>fontRegion (10,
+100, 12 * 12, 12 * 6);<br>
+fontDrawString (-1,-1, &quot;Here is a simple text region!
+\\c(255 0 0)How nice!&quot;);</i></font></p>
+
+<p><font size="2" face="Arial">This region would be from the
+position (10, 120) with a width of 12 * 12 (12 characters at
+default font size) and a height of 12 * 6 (6 characters a default
+font size). The bottom of the text region would be described by
+(10, 100 &#150; (12 * 6)). After the region is established the
+string is drawn into the region. As you can see <em>fontDrawString</em>
+is passed two negative numbers. Why? If a text region is
+established the position paramaters to <em>fontDrawString</em>
+are ignored, I did this for simplicity. The region only is
+present for one call to<em> fontDrawString</em>. </font></p>
+
+<p><font size="3" face="Arial"><b><u>Closing Notes</u></b></font></p>
+
+<p><font size="2" face="Arial">PLEASE make sure that you look at
+the glTexFont example that I provide on my web page. This example
+can explain things better than I can because it is using the
+actual library. If you still have problems understanding how to
+use the library drop me a line and I will help you. </font></p>
+
+<p><font size="2" face="Arial">When the font size, color, shadow
+or region is set these are only set for one call to <em>fontDrawString</em>.
+Once a string has been drawn all values go back to their
+defaults. </font></p>
+
+<p><font size="2" face="Arial">If you would like to contribute
+code to the glTexFont distribution PLEASE email it to me with a
+description of what it does and I will merge it with the next
+release and give you credit for your work. </font></p>
+
+<p><font size="2" face="Arial">The glTexFont page is located at </font><a
+href="http://nate.scuzzy.net/gltexfont"><font size="2"
+face="Arial">http://nate.scuzzy.net/gltexfont</font></a></p>
+</body>
+</html>

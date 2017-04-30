@@ -1,0 +1,44 @@
+glTexFont Library
+Source Code License Agreement
+Copyright (c) 1999 Nate Miller
+
+THE LICENSE:
+
+The licenser, Nate Miller, is herein referred to as the "licenser".
+
+This license agreement, the source code provided, the executable(s)
+compilable thereof, and all other contents of the distributable archive
+including the archive itself are herein referred to as "covered" by this
+license agreement.
+
+Reading, compiling, running, or otherwise using any item covered by this
+license constitutes automatic acceptance of the rules described in this
+license, as precedes and follows in the remainder of this file.
+
+All items covered by this license agreement are the sole property of the
+licenser, and are licensed as-is to the public for educational use only.
+No items covered by this license may be distributed in any archive other
+than that which is originally provided, and said archive may only be
+distributed via mediums that require no cost for retrieval of said archive
+other than those required by the medium itself and its direct providers
+thereof.  None of the items covered may be modified or duplicated in any
+form, with the sole exception of modifications and duplications made by
+licensees for educational use only.  Said modifications and duplications
+may only be made to source code covered by this license, and all said
+modifications and duplications become the immediate and sole property of the
+licenser.  The licenser is not responsible for any damages, direct or
+indirect, that may result from usage, proper or improper, of items covered
+under this license.
+
+Any violation of the above rules must be authorized via express written
+consent of the licenser, or it may be punishable by civil legal action.
+
+THE LICENSE PARAPHRASED:
+
+I wrote this code so people can learn from it.  If you understand it and 
+find some bits and pieces useful as-is, feel free to make use of them.  
+But don't go taking credit for that which is not yours, and don't go 
+trying to make a buck off of my effort directly without my permission. 
+
+Nate Miller
+
